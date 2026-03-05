@@ -29,15 +29,10 @@ export default function App() {
           fetch("http://localhost:4000/columns"),
         ]);
 
-        // Read the JSON ONCE and store
         const projData = await projRes.json();
         const colData = await colRes.json();
-
         setProjects(projData);
         setColumns(colData);
-
-        // Now you can safely log
-        console.log("useEffect déclenché !");
         console.log("Projets:", projData);
         console.log("Colonnes:", colData);
       } catch (error) {
