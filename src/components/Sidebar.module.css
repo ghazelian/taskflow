@@ -33,7 +33,18 @@
 .item {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.active {
+  background-color: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
 }
 
 .dot {
