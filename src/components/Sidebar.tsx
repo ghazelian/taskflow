@@ -10,9 +10,11 @@ interface Project {
 interface SidebarProps {
   projects: Project[];
   isOpen: boolean;
+  onRename: (project: Project) => void;
 }
 
-export default function Sidebar({ projects, isOpen }: SidebarProps) {
+export default function Sidebar({ projects, isOpen, onRename }: SidebarProps) {
+  console.log("Sidebar re-render");
   return (
     <aside
       className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}
@@ -30,6 +32,17 @@ export default function Sidebar({ projects, isOpen }: SidebarProps) {
               <span className={styles.dot} style={{ background: p.color }} />
               {p.name}
             </NavLink>
+
+            <button
+              className={styles.renameBtn}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onRename(p);
+              }}
+            >
+              ✏️
+            </button>
           </li>
         ))}
       </ul>
