@@ -13,7 +13,7 @@ interface Props {
 export default async function ProjectPage({ params }: Props) {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:4000/projects/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/projects/${id}`, {
     cache: "no-store",
   });
 

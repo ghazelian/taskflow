@@ -21,34 +21,9 @@
   ],
   "projects": [
     {
-      "id": "1",
-      "name": "Site E-commerce",
-      "color": "#e74c3c"
-    },
-    {
-      "id": "2",
-      "name": "App Mobile",
+      "id": "1776968801603",
+      "name": "laptop",
       "color": "#3498db"
-    },
-    {
-      "id": "3",
-      "name": "API Backend",
-      "color": "#2ecc71"
-    },
-    {
-      "id": "5c4a",
-      "name": "exemple",
-      "color": "#3498db"
-    },
-    {
-      "name": "Test",
-      "color": "#3498db",
-      "id": "w_jeXB5iDS4"
-    },
-    {
-      "name": "testo",
-      "color": "#3498db",
-      "id": "vZERhW3j9o4"
     }
   ],
   "columns": [
