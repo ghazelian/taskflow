@@ -1,40 +1,31 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { prisma } from "@/lib/prisma";
 
 export async function addProject(formData: FormData) {
   const name = formData.get("name") as string;
   const color = formData.get("color") as string;
-  
-  await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/projects`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, color }),
-  });
-  
+  await prisma.project.create({ data: { name, color } });
   revalidatePath("/dashboard");
 }
 
 export async function renameProject(formData: FormData) {
-    const id = formData.get("id") as string;
-    const newName = formData.get("newName") as string;
-    const color = formData.get("color") as string;
+  const id = Number(formData.get("id"));
+  const newName = formData.get("newName") as string;
+  const color = formData.get("color") as string;
+  await prisma.project.update({
+    where: { id },
+    data: { name: newName, color },
+  });
 
-    await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/projects/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name: newName, color }),
-    });
-
-    revalidatePath("/dashboard");
+  revalidatePath("/dashboard");
 }
 
 export async function deleteProject(formData: FormData) {
-    const id = formData.get("id") as string;
+  const id = Number(formData.get("id"));
 
-    await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/projects/${id}`, {
-        method: "DELETE",
-    });
+  await prisma.project.delete({ where: { id } });
 
-    revalidatePath("/dashboard");
+  revalidatePath("/dashboard");
 }
